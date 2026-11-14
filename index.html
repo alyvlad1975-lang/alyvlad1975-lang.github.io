@@ -380,15 +380,6 @@
   }
   .final h2 { font-size: clamp(24px, 3.4vw, 36px); margin-bottom: 14px; }
   .final > p { color: var(--muted); max-width: 600px; margin: 0 auto 28px; }
-  .contact-form {
-    max-width: 520px; margin: 0 auto 26px; display: flex; flex-direction: column; gap: 12px; text-align: left;
-  }
-  .contact-form input, .contact-form textarea {
-    padding: 14px 18px; border-radius: 12px; border: 1px solid var(--line);
-    background: var(--card); color: var(--text); font-size: 15px; font-family: inherit; resize: vertical;
-  }
-  .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent); }
-  .form-note { font-size: 12.5px; color: var(--muted); text-align: center; }
   .msg {
     max-width: 480px; margin: 0 auto 26px; text-align: left;
     background: var(--card); border: 1px solid var(--line); border-radius: 16px 16px 16px 4px;
@@ -403,7 +394,6 @@
   .copy-btn:hover { color: var(--text); border-color: var(--accent); }
   .final-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .final .hint { margin-top: 18px; font-size: 13px; color: var(--muted); }
-  .form-ok { display: none; color: var(--accent-2); font-weight: 600; margin-top: 10px; }
 
   footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 13.5px; }
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
@@ -599,6 +589,32 @@
     </div>
     <div class="grid" id="works-grid">
 
+      <article class="card reveal" data-niche="ecom">
+        <div class="thumb" data-full="img/flora.jpg"><img src="img/flora.jpg" alt="Демо-сайт цветочного магазина «Флора»" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>Флора · цветы с доставкой</h3>
+          <p>Задача: продавать букеты онлайн. Реализовано: каталог с корзиной и оформлением заказа. Результат: доставка по городу за 90 минут как главный оффер.</p>
+          <div class="meta"><span class="chip">Товары</span><span class="chip">Екатеринбург</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/flora.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт-витрину с каталогом (как «Флора»)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-niche="zdorove">
+        <div class="thumb" data-full="img/opora.jpg"><img src="img/opora.jpg" alt="Демо-сайт психолога «Опора»" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>Опора · психолог</h3>
+          <p>Задача: сделать первый шаг клиента лёгким. Реализовано: направления работы, форматы очно и онлайн, бережная запись. Результат: доверие с первого экрана.</p>
+          <div class="meta"><span class="chip">Здоровье</span><span class="chip">Казань</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/opora.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт для специалиста (как «Опора»)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
       <article class="card reveal" data-niche="avto">
         <div class="thumb" data-full="img/aquadrive.jpg"><img src="img/aquadrive.jpg" alt="Демо-сайт детейлинг-студии AquaDrive" loading="lazy"><span class="badge">Демо-проект</span></div>
         <div class="body">
@@ -703,32 +719,6 @@
         </div>
       </article>
 
-      <article class="card reveal" data-niche="zdorove">
-        <div class="thumb" data-full="img/opora.jpg"><img src="img/opora.jpg" alt="Демо-сайт психолога «Опора»" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>Опора · психолог</h3>
-          <p>Задача: сделать первый шаг клиента лёгким. Реализовано: направления работы, форматы очно и онлайн, бережная запись. Результат: доверие с первого экрана.</p>
-          <div class="meta"><span class="chip">Здоровье</span><span class="chip">Казань</span></div>
-          <div class="card-actions">
-            <button class="mini-btn" type="button" data-open="img/opora.jpg">Открыть сайт</button>
-            <button class="mini-btn solid" type="button" data-want="Хочу сайт для специалиста (как «Опора»)">Хочу похожий</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="card reveal" data-niche="ecom">
-        <div class="thumb" data-full="img/flora.jpg"><img src="img/flora.jpg" alt="Демо-сайт цветочного магазина «Флора»" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>Флора · цветы с доставкой</h3>
-          <p>Задача: продавать букеты онлайн. Реализовано: каталог с корзиной и оформлением заказа. Результат: доставка по городу за 90 минут как главный оффер.</p>
-          <div class="meta"><span class="chip">Товары</span><span class="chip">Екатеринбург</span></div>
-          <div class="card-actions">
-            <button class="mini-btn" type="button" data-open="img/flora.jpg">Открыть сайт</button>
-            <button class="mini-btn solid" type="button" data-want="Хочу сайт-витрину с каталогом (как «Флора»)">Хочу похожий</button>
-          </div>
-        </div>
-      </article>
-
     </div>
   </div>
 </section>
@@ -813,11 +803,10 @@
       <div class="about-photo">✦</div>
       <div>
         <h2>Меня зовут Алевтина</h2>
-        <p>Я налоговый консультант и создаю цифровые решения для бизнеса с помощью ИИ: продающие лендинги, сайты-витрины, ИИ-ассистентов и автоматизацию рутинных задач.</p>
+        <p>Создаю цифровые решения для бизнеса с помощью ИИ: продающие лендинги, сайты-витрины, ИИ-ассистентов и автоматизацию рутинных задач.</p>
         <p>Мой подход: смотреть на проект глазами вашего клиента. Сайт должен быть понятным, быстрым и без лишнего – и обязательно приводить заявки.</p>
         <p>Работаю онлайн по всей России: от брифа до публикации всё происходит в переписке, без встреч и бумажной волокиты.</p>
         <div class="facts">
-          <span>Налоговый консультант</span>
           <span>Сайты и веб-приложения</span>
           <span>ИИ-ассистенты и боты</span>
           <span>Автоматизация процессов</span>
@@ -869,15 +858,7 @@
   <div class="wrap">
     <div class="final reveal">
       <h2>Хотите такой сайт?</h2>
-      <p>Оставьте заявку в форме ниже или нажмите кнопку – сообщение для отправки уже набрано. Скопируйте его одним кликом и отправьте мне в удобный мессенджер.</p>
-      <form class="contact-form" id="contact-form">
-        <input type="text" name="name" placeholder="Ваше имя" required>
-        <input type="text" name="contact" placeholder="Телефон, Telegram или MAX" required>
-        <textarea name="msg" rows="3" placeholder="Пара слов о задаче (необязательно)"></textarea>
-        <button class="btn btn-primary" type="submit">Отправить заявку</button>
-        <p class="form-note">Кнопка откроет мессенджер с готовым текстом – заявка уйдёт напрямую мне.</p>
-        <p class="form-ok" id="form-ok">Готово! Осталось нажать «Отправить» в открывшемся мессенджере.</p>
-      </form>
+      <p>Нажмите кнопку – сообщение для отправки уже набрано. Скопируйте его одним кликом и отправьте мне в удобный мессенджер.</p>
       <div class="msg">
         <p id="msg-text">Здравствуйте! Хочу заказать сайт, расскажите, пожалуйста, подробнее</p>
         <button class="copy-btn" id="copy-btn" type="button">Скопировать</button>
@@ -1041,19 +1022,6 @@
     msgEl.textContent = "Здравствуйте! " + b.dataset.want + ". Расскажите, пожалуйста, подробнее.";
     document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
   }));
-
-  /* ---------- Форма → модалка ---------- */
-  document.getElementById("contact-form").addEventListener("submit", e => {
-    e.preventDefault();
-    const fd = new FormData(e.target);
-    const parts = ["Здравствуйте! Хочу заказать сайт."];
-    if (fd.get("name")) parts.push("Меня зовут " + fd.get("name") + ".");
-    if (fd.get("msg")) parts.push("Задача: " + fd.get("msg"));
-    parts.push("Связь: " + fd.get("contact"));
-    msgEl.textContent = parts.join(" ");
-    document.getElementById("form-ok").style.display = "block";
-    openModal();
-  });
 
   /* ---------- Копирование ---------- */
   const copy = async () => { try { await navigator.clipboard.writeText(msgText()); return true; } catch { return false; } };
