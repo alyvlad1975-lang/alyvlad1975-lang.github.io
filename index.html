@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Алевтина · сайты для бизнеса. Витрина работ</title>
-<meta name="description" content="Создаю сайты для малого бизнеса с помощью ИИ: лендинги, сайты-витрины, ИИ-ассистенты и автоматизация. Работаю онлайн по всей России. Витрина демо-проектов.">
+<meta name="description" content="Создаю сайты для малого бизнеса: лендинги, сайты-витрины, многостраничники и ИИ-боты. Онлайн по всей России. Витрина демо-проектов.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
 <style>
   :root {
@@ -25,13 +25,15 @@
     color: var(--text);
     font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
     line-height: 1.6;
+    overflow-x: hidden;
   }
   h1, h2, h3 { line-height: 1.2; font-weight: 700; }
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
+  button { font-family: inherit; }
   .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
 
-  /* Шапка */
+  /* ============ Шапка ============ */
   header {
     position: sticky; top: 0; z-index: 50;
     background: rgba(14, 16, 20, .82);
@@ -41,101 +43,292 @@
   .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
   .logo { font-weight: 800; letter-spacing: .04em; font-size: 18px; }
   .logo span { color: var(--accent-2); }
-  .nav-links { display: flex; gap: 26px; font-size: 14.5px; color: var(--muted); }
+  .nav-links { display: flex; gap: 22px; font-size: 14px; color: var(--muted); }
+  .nav-links a { position: relative; padding: 4px 0; transition: color .15s ease; }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    transition: width .2s ease;
+  }
   .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover::after { width: 100%; }
   .nav-cta {
     padding: 9px 18px; border-radius: 999px; font-size: 14px; font-weight: 600;
     background: linear-gradient(120deg, var(--accent), var(--accent-2));
-    color: #fff;
+    color: #fff; transition: transform .15s ease, box-shadow .15s ease;
   }
-  @media (max-width: 820px) { .nav-links { display: none; } }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(124,108,240,.4); }
+  @media (max-width: 900px) { .nav-links { display: none; } }
 
-  /* Герой */
-  .hero { padding: 92px 0 64px; position: relative; overflow: hidden; }
+  /* ============ Герой ============ */
+  .hero { padding: 80px 0 70px; position: relative; overflow: hidden; }
   .hero::before {
     content: ""; position: absolute; inset: 0; pointer-events: none;
     background:
       radial-gradient(560px 340px at 82% 8%, rgba(124, 108, 240, .22), transparent 70%),
       radial-gradient(520px 320px at 8% 90%, rgba(55, 198, 192, .16), transparent 70%);
   }
-  .hero .wrap { position: relative; }
+  .hero .wrap { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  @media (max-width: 960px) { .hero .wrap { grid-template-columns: 1fr; } }
   .kicker {
-    display: inline-block; font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+    display: inline-block; font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase;
     color: var(--accent-2); border: 1px solid var(--line); border-radius: 999px;
-    padding: 7px 16px; margin-bottom: 26px; background: rgba(55, 198, 192, .06);
+    padding: 7px 16px; margin-bottom: 24px; background: rgba(55, 198, 192, .06);
   }
-  .hero h1 { font-size: clamp(34px, 5.4vw, 58px); max-width: 840px; }
+  .hero h1 { font-size: clamp(32px, 4.6vw, 52px); max-width: 620px; }
   .hero h1 em {
     font-style: normal;
     background: linear-gradient(100deg, var(--accent), var(--accent-2));
     -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .hero p { margin: 24px 0 34px; max-width: 640px; color: var(--muted); font-size: 17.5px; }
+  .hero p { margin: 22px 0 30px; max-width: 560px; color: var(--muted); font-size: 17px; }
   .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
     padding: 14px 26px; border-radius: 12px; font-weight: 600; font-size: 15.5px;
     transition: transform .15s ease, box-shadow .15s ease; cursor: pointer; border: none;
-    font-family: inherit;
   }
   .btn:hover { transform: translateY(-2px); }
   .btn-primary { background: linear-gradient(120deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 8px 30px rgba(124, 108, 240, .35); }
   .btn-ghost { border: 1px solid var(--line); color: var(--text); background: var(--bg-2); }
+
+  .hero-stats { display: flex; gap: 30px; margin-top: 36px; flex-wrap: wrap; }
+  .hstat b { display: block; font-size: 26px; background: linear-gradient(100deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hstat span { font-size: 13px; color: var(--muted); }
+
+  /* Три телефона */
+  .phones { position: relative; display: flex; justify-content: center; gap: 18px; min-height: 380px; }
+  .phone {
+    width: 150px; flex: 0 0 auto; border-radius: 26px; padding: 9px;
+    background: linear-gradient(160deg, #2a3040, #12151d);
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 60px rgba(0,0,0,.5);
+    transition: transform .4s ease;
+  }
+  .phone:nth-child(1) { transform: rotate(-7deg) translateY(26px); }
+  .phone:nth-child(2) { transform: translateY(-8px) scale(1.08); z-index: 2; }
+  .phone:nth-child(3) { transform: rotate(7deg) translateY(26px); }
+  .phones:hover .phone:nth-child(1) { transform: rotate(-9deg) translateY(18px); }
+  .phones:hover .phone:nth-child(3) { transform: rotate(9deg) translateY(18px); }
+  .screen {
+    border-radius: 18px; overflow: hidden; aspect-ratio: 9 / 18;
+    background: #0b0d11; position: relative;
+  }
+  .screen img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top;
+    opacity: 0; transition: opacity .8s ease;
+  }
+  .screen img.active { opacity: 1; }
+  @media (max-width: 480px) { .phone { width: 118px; } }
+
+  /* Тост «Новая заявка» */
+  .toast {
+    position: absolute; z-index: 3; display: flex; align-items: center; gap: 10px;
+    background: rgba(24, 28, 37, .95); border: 1px solid var(--line); border-radius: 14px;
+    padding: 10px 16px; font-size: 13px; box-shadow: 0 14px 40px rgba(0,0,0,.5);
+    opacity: 0; transform: translateY(12px); transition: opacity .4s ease, transform .4s ease;
+    pointer-events: none; backdrop-filter: blur(8px); white-space: nowrap;
+  }
+  .toast.show { opacity: 1; transform: translateY(0); }
+  .toast .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2); animation: pulse 1.4s infinite; }
+  .toast b { color: var(--accent-2); }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  #toast1 { top: 6%; right: -4%; }
+  #toast2 { bottom: 12%; left: -6%; }
+
+  /* ============ Бегущая строка ============ */
+  .marquee {
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    background: var(--bg-2); overflow: hidden; padding: 16px 0;
+  }
+  .marquee-track { display: flex; gap: 44px; width: max-content; animation: scroll 28s linear infinite; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  .marquee-track span { font-size: 15px; font-weight: 600; letter-spacing: .06em; color: var(--muted); white-space: nowrap; }
+  .marquee-track span::before { content: "✦ "; color: var(--accent-2); }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   section { padding: 76px 0; }
   .sec-head { margin-bottom: 42px; }
   .sec-head h2 { font-size: clamp(26px, 3.4vw, 38px); }
   .sec-head p { color: var(--muted); margin-top: 12px; max-width: 640px; }
 
-  /* Витрина работ */
+  /* ============ Калькулятор потерь ============ */
+  .calc {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    border: 1px solid var(--line); border-radius: 24px; padding: 44px;
+    background:
+      radial-gradient(420px 260px at 90% 0%, rgba(124,108,240,.14), transparent 70%),
+      var(--bg-2);
+  }
+  @media (max-width: 860px) { .calc { grid-template-columns: 1fr; padding: 28px; } }
+  .calc h3 { font-size: 22px; margin-bottom: 8px; }
+  .calc .lead { color: var(--muted); font-size: 14.5px; margin-bottom: 26px; }
+  .slider-row { margin-bottom: 24px; }
+  .slider-row label { display: flex; justify-content: space-between; font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+  .slider-row label output { color: var(--text); font-weight: 700; }
+  input[type=range] {
+    width: 100%; appearance: none; -webkit-appearance: none; height: 6px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent) var(--fill, 50%), var(--line) var(--fill, 50%));
+    outline: none; cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    appearance: none; -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%;
+    background: #fff; border: 4px solid var(--accent); box-shadow: 0 4px 14px rgba(124,108,240,.5);
+  }
+  .calc-result {
+    display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+    border: 1px solid var(--line); border-radius: 20px; padding: 34px; background: var(--card);
+  }
+  .calc-result .sum {
+    font-size: clamp(34px, 4vw, 48px); font-weight: 800;
+    background: linear-gradient(100deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    transition: transform .15s ease;
+  }
+  .calc-result p { color: var(--muted); font-size: 14.5px; margin-top: 10px; }
+  .calc-result .disc { font-size: 12px; margin-top: 18px; opacity: .75; }
+  .calc-result .btn { margin-top: 22px; }
+</style>
+<style>
+  /* ============ Карточки «Что делает сайт» ============ */
+  .benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 900px) { .benefits { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .benefits { grid-template-columns: 1fr; } }
+  .benefit {
+    border: 1px solid var(--line); border-radius: var(--radius); padding: 26px;
+    background: var(--bg-2); transition: transform .2s ease, border-color .2s ease;
+  }
+  .benefit:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .benefit .ico {
+    width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+    font-size: 20px; margin-bottom: 16px;
+    background: rgba(124,108,240,.14); border: 1px solid var(--line);
+  }
+  .benefit h3 { font-size: 16.5px; margin-bottom: 8px; }
+  .benefit p { color: var(--muted); font-size: 14px; }
+
+  /* ============ Квиз ============ */
+  .quiz {
+    display: grid; grid-template-columns: 1.2fr .8fr; gap: 30px;
+    border: 1px solid var(--line); border-radius: 24px; padding: 44px; background: var(--bg-2);
+  }
+  @media (max-width: 860px) { .quiz { grid-template-columns: 1fr; padding: 28px; } }
+  .quiz h3 { font-size: 22px; margin-bottom: 26px; }
+  .q-block { margin-bottom: 24px; }
+  .q-block .q-title { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+  .q-block .q-title span { color: var(--accent-2); margin-right: 8px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pill {
+    padding: 9px 18px; border-radius: 999px; font-size: 14px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--card); color: var(--muted);
+    transition: all .15s ease;
+  }
+  .pill:hover { border-color: var(--accent); color: var(--text); }
+  .pill.sel {
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    color: #fff; border-color: transparent; font-weight: 600;
+  }
+  .quiz-panel {
+    border-radius: 20px; padding: 30px; background: #0b0d12; border: 1px solid var(--line);
+    display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+    min-height: 280px;
+  }
+  .quiz-panel .placeholder { color: var(--muted); font-size: 14.5px; }
+  .quiz-panel .placeholder::before { content: "✦"; display: block; font-size: 30px; color: var(--accent); margin-bottom: 14px; }
+  .quiz-result { display: none; }
+  .quiz-panel.done .placeholder { display: none; }
+  .quiz-panel.done .quiz-result { display: block; animation: fadeUp .4s ease; }
+  .quiz-result h4 { font-size: 20px; margin-bottom: 10px; }
+  .quiz-result p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+  /* ============ Работы ============ */
+  .filters { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+  .view-toggle { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+  .view-toggle button {
+    padding: 8px 18px; font-size: 13.5px; cursor: pointer; border: none;
+    background: var(--bg-2); color: var(--muted); transition: all .15s ease;
+  }
+  .view-toggle button.on { background: linear-gradient(120deg, var(--accent), var(--accent-2)); color: #fff; }
+  .works-head { display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap; margin-bottom: 26px; }
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
   .card {
     border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
     background: var(--card); display: flex; flex-direction: column;
-    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease, opacity .3s ease;
   }
   .card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 18px 44px rgba(0, 0, 0, .45); }
-  .thumb { aspect-ratio: 3 / 2; overflow: hidden; position: relative; background: #0b0d11; }
+  .card.hide { display: none; }
+  .thumb { aspect-ratio: 3 / 2; overflow: hidden; position: relative; background: #0b0d11; cursor: pointer; }
   .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .5s ease; }
   .card:hover .thumb img { transform: scale(1.04); }
+  .thumb.phone-view img { object-fit: contain; background: #0b0d11; }
   .badge {
     position: absolute; top: 12px; left: 12px; font-size: 12px; font-weight: 600;
     padding: 5px 12px; border-radius: 999px; background: rgba(14, 16, 20, .85);
     border: 1px solid var(--line); color: var(--accent-2); backdrop-filter: blur(6px);
   }
   .card .body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-  .card h3 { font-size: 18px; }
-  .card p { color: var(--muted); font-size: 14px; flex: 1; }
-  .meta { display: flex; gap: 8px; flex-wrap: wrap; }
+  .card h3 { font-size: 17.5px; }
+  .card p { color: var(--muted); font-size: 13.5px; flex: 1; }
+  .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
   .chip {
     font-size: 12px; padding: 4px 12px; border-radius: 999px;
     border: 1px solid var(--line); color: var(--muted); background: var(--bg);
   }
-  @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
-
-  /* Услуги */
-  .services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-  .svc {
-    border: 1px solid var(--line); border-radius: var(--radius); padding: 28px;
-    background: var(--bg-2); display: flex; justify-content: space-between; gap: 20px;
-    align-items: flex-start; transition: border-color .2s ease, transform .2s ease;
+  .card-actions { display: flex; gap: 10px; }
+  .mini-btn {
+    flex: 1; text-align: center; padding: 9px 10px; font-size: 13px; font-weight: 600;
+    border-radius: 10px; cursor: pointer; transition: all .15s ease; border: 1px solid var(--line);
+    background: var(--bg); color: var(--text);
   }
-  .svc:hover { border-color: var(--accent); transform: translateY(-3px); }
-  .svc h3 { font-size: 17.5px; margin-bottom: 8px; }
-  .svc p { color: var(--muted); font-size: 14.5px; }
-  .price {
-    flex: 0 0 auto; text-align: right;
-    font-size: 19px; font-weight: 800; white-space: nowrap;
-    background: linear-gradient(100deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+  .mini-btn:hover { border-color: var(--accent); }
+  .mini-btn.solid {
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    color: #fff; border-color: transparent;
   }
-  .price small { display: block; font-size: 11.5px; font-weight: 500; color: var(--muted); -webkit-text-fill-color: var(--muted); }
-  @media (max-width: 800px) { .services { grid-template-columns: 1fr; } }
 
-  /* Как работаю */
+  /* Лайтбокс */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 100; display: none; place-items: center;
+    background: rgba(8, 9, 12, .9); backdrop-filter: blur(6px); padding: 24px;
+  }
+  .lightbox.open { display: grid; }
+  .lightbox img { max-width: min(1000px, 92vw); max-height: 84vh; border-radius: 14px; border: 1px solid var(--line); object-fit: contain; }
+  .lightbox .close {
+    position: absolute; top: 20px; right: 24px; font-size: 30px; color: var(--muted);
+    cursor: pointer; background: none; border: none;
+  }
+
+  /* ============ Тарифы ============ */
+  .pricing { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  @media (max-width: 1020px) { .pricing { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .pricing { grid-template-columns: 1fr; } }
+  .plan {
+    position: relative; border: 1px solid var(--line); border-radius: 20px; padding: 30px 24px;
+    background: var(--bg-2); display: flex; flex-direction: column; gap: 14px;
+    transition: transform .2s ease, border-color .2s ease;
+  }
+  .plan:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .plan.hot { border-color: var(--accent-2); box-shadow: 0 14px 44px rgba(55,198,192,.16); }
+  .plan .tag {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    font-size: 12px; font-weight: 700; padding: 5px 16px; border-radius: 999px; white-space: nowrap;
+    background: linear-gradient(120deg, var(--accent), var(--accent-2)); color: #fff;
+  }
+  .plan h3 { font-size: 17px; }
+  .plan .p-desc { color: var(--muted); font-size: 13.5px; flex: 1; }
+  .plan .p-price { font-size: 26px; font-weight: 800; }
+  .plan .p-price small { font-size: 12px; font-weight: 500; color: var(--muted); display: block; margin-top: 2px; }
+  .plan ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .plan li { font-size: 13.5px; color: var(--muted); padding-left: 20px; position: relative; }
+  .plan li::before { content: "✓"; position: absolute; left: 0; color: var(--accent-2); font-weight: 700; }
+
+  /* ============ Таймлайн ============ */
   .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; counter-reset: step; }
-  .step { border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 22px; background: var(--bg-2); }
+  .step { border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 22px; background: var(--bg-2); position: relative; }
   .step::before {
     counter-increment: step; content: "0" counter(step);
     display: block; font-size: 30px; font-weight: 800; margin-bottom: 14px;
@@ -147,7 +340,36 @@
   @media (max-width: 900px) { .steps { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 540px) { .steps { grid-template-columns: 1fr; } }
 
-  /* Финал */
+  /* ============ Обо мне ============ */
+  .about { display: grid; grid-template-columns: .9fr 1.1fr; gap: 44px; align-items: center; }
+  @media (max-width: 860px) { .about { grid-template-columns: 1fr; } }
+  .about-photo {
+    border-radius: 24px; aspect-ratio: 4/5; display: grid; place-items: center;
+    background:
+      radial-gradient(300px 300px at 70% 20%, rgba(124,108,240,.3), transparent 70%),
+      radial-gradient(260px 260px at 20% 90%, rgba(55,198,192,.22), transparent 70%),
+      var(--bg-2);
+    border: 1px solid var(--line); font-size: 90px; overflow: hidden;
+  }
+  .about h2 { font-size: clamp(26px, 3.2vw, 36px); margin-bottom: 18px; }
+  .about p { color: var(--muted); margin-bottom: 14px; font-size: 15.5px; }
+  .about .facts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+  .about .facts span { font-size: 13px; padding: 7px 16px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); background: var(--bg-2); }
+
+  /* ============ FAQ ============ */
+  .faq { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item { border: 1px solid var(--line); border-radius: 16px; background: var(--bg-2); overflow: hidden; }
+  .faq-q {
+    width: 100%; text-align: left; padding: 20px 24px; font-size: 15.5px; font-weight: 600;
+    background: none; border: none; color: var(--text); cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .faq-q::after { content: "+"; font-size: 22px; color: var(--accent-2); transition: transform .25s ease; flex: 0 0 auto; }
+  .faq-item.open .faq-q::after { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+  .faq-a p { padding: 0 24px 20px; color: var(--muted); font-size: 14.5px; }
+
+  /* ============ Контакты ============ */
   .final {
     border: 1px solid var(--line); border-radius: 24px; padding: 56px 32px;
     text-align: center; position: relative; overflow: hidden;
@@ -157,7 +379,16 @@
       var(--bg-2);
   }
   .final h2 { font-size: clamp(24px, 3.4vw, 36px); margin-bottom: 14px; }
-  .final > p { color: var(--muted); max-width: 560px; margin: 0 auto 28px; }
+  .final > p { color: var(--muted); max-width: 600px; margin: 0 auto 28px; }
+  .contact-form {
+    max-width: 520px; margin: 0 auto 26px; display: flex; flex-direction: column; gap: 12px; text-align: left;
+  }
+  .contact-form input, .contact-form textarea {
+    padding: 14px 18px; border-radius: 12px; border: 1px solid var(--line);
+    background: var(--card); color: var(--text); font-size: 15px; font-family: inherit; resize: vertical;
+  }
+  .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent); }
+  .form-note { font-size: 12.5px; color: var(--muted); text-align: center; }
   .msg {
     max-width: 480px; margin: 0 auto 26px; text-align: left;
     background: var(--card); border: 1px solid var(--line); border-radius: 16px 16px 16px 4px;
@@ -167,17 +398,39 @@
   .copy-btn {
     flex: 0 0 auto; font-size: 12.5px; font-weight: 600; cursor: pointer;
     padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line);
-    background: var(--bg); color: var(--muted); font-family: inherit; transition: all .15s ease;
+    background: var(--bg); color: var(--muted); transition: all .15s ease;
   }
   .copy-btn:hover { color: var(--text); border-color: var(--accent); }
   .final-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .final .hint { margin-top: 18px; font-size: 13px; color: var(--muted); }
+  .form-ok { display: none; color: var(--accent-2); font-weight: 600; margin-top: 10px; }
 
   footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 13.5px; }
   footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
-  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+  /* Модалка выбора мессенджера */
+  .modal {
+    position: fixed; inset: 0; z-index: 110; display: none; place-items: center;
+    background: rgba(8,9,12,.85); backdrop-filter: blur(6px); padding: 24px;
+  }
+  .modal.open { display: grid; }
+  .modal-box {
+    background: var(--bg-2); border: 1px solid var(--line); border-radius: 22px;
+    padding: 36px; max-width: 420px; width: 100%; text-align: center;
+    animation: fadeUp .3s ease;
+  }
+  .modal-box h3 { font-size: 20px; margin-bottom: 8px; }
+  .modal-box > p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .modal-btns { display: flex; flex-direction: column; gap: 12px; }
+  .modal-close { margin-top: 18px; background: none; border: none; color: var(--muted); font-size: 13.5px; cursor: pointer; text-decoration: underline; }
+
+  /* Появление при скролле */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -186,151 +439,352 @@
   <div class="wrap nav">
     <a class="logo" href="#top">АЛЕВТИНА<span>.</span>САЙТЫ</a>
     <nav class="nav-links">
+      <a href="#calc">Калькулятор</a>
+      <a href="#quiz">Подбор формата</a>
       <a href="#works">Работы</a>
-      <a href="#services">Услуги и цены</a>
+      <a href="#pricing">Цены</a>
       <a href="#process">Как работаю</a>
+      <a href="#faq">Вопросы</a>
       <a href="#contact">Контакты</a>
     </nav>
     <a class="nav-cta" href="#contact">Заказать сайт</a>
   </div>
 </header>
 
-<!-- КТО Я -->
+<!-- ГЕРОЙ -->
 <div class="hero" id="top">
   <div class="wrap">
-    <span class="kicker">Сайты для бизнеса · онлайн по всей России</span>
-    <h1>Меня зовут Алевтина. Делаю <em>сайты, которые работают на бизнес</em></h1>
-    <p>Я налоговый консультант и создаю цифровые решения для бизнеса с помощью ИИ: продающие лендинги, сайты-витрины, ИИ-ассистентов и автоматизацию рутинных задач. Смотрю на проект глазами вашего клиента: понятно, быстро, без лишнего. Работаю онлайн, географии нет.</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href="#works">Смотреть работы</a>
-      <a class="btn btn-ghost" href="#services">Услуги и цены</a>
+    <div>
+      <span class="kicker">Сайты для бизнеса · онлайн по всей России</span>
+      <h1>Делаю <em>сайты, которые работают на бизнес</em>, а не просто висят в интернете</h1>
+      <p>Продающие лендинги, сайты-витрины, многостраничники и ИИ-боты. Смотрю на проект глазами вашего клиента: понятно, быстро, без лишнего. Работаю онлайн, географии нет.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Заказать сайт</a>
+        <a class="btn btn-ghost" href="#works">Смотреть работы</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><b>10</b><span>демо-проектов в разных нишах</span></div>
+        <div class="hstat"><b>6</b><span>ниш: от бьюти до стройки</span></div>
+        <div class="hstat"><b>4</b><span>формата сайтов под разные задачи</span></div>
+      </div>
+    </div>
+    <div class="phones" aria-hidden="true">
+      <div class="phone"><div class="screen" data-phone></div></div>
+      <div class="phone"><div class="screen" data-phone></div></div>
+      <div class="phone"><div class="screen" data-phone></div></div>
+      <div class="toast" id="toast1"><span class="dot"></span><span><b>Новая заявка!</b> заказ на сайт-витрину</span></div>
+      <div class="toast" id="toast2"><span class="dot"></span><span><b>Новая заявка!</b> консультация по ИИ-боту</span></div>
     </div>
   </div>
 </div>
 
-<!-- РАБОТЫ -->
-<section id="works">
+<!-- БЕГУЩАЯ СТРОКА -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee">
+    <span>Бьюти и салоны</span><span>Цветы и доставка</span><span>Автосервис</span><span>Шиномонтаж</span><span>Ремонт квартир</span><span>Септики и загородка</span><span>Загородное строительство</span><span>Ремонт техники</span><span>Психологи и здоровье</span><span>Детейлинг</span>
+  </div>
+</div>
+
+<!-- КАЛЬКУЛЯТОР ПОТЕРЬ -->
+<section id="calc">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <h2>Работы из курса «Вайб-сайты»</h2>
-      <p>Учебные демо-проекты по разным нишам: от салонов красоты до строительства. Каждый сайт адаптивен и собирает заявки с первого экрана.</p>
-    </div>
-    <div class="grid">
-      <article class="card reveal">
-        <div class="thumb"><img src="img/aquadrive.jpg" alt="Демо-сайт детейлинг-студии AquaDrive" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>AquaDrive · детейлинг-студия</h3>
-          <p>Тёмный имиджевый лендинг с интерактивной мойкой на первом экране: посетитель запускает мойку и видит блеск.</p>
-          <div class="meta"><span class="chip">Авто</span><span class="chip">Екатеринбург</span></div>
+    <div class="calc reveal">
+      <div>
+        <h3>Сколько клиентов может проходить мимо вас?</h3>
+        <p class="lead">Люди ищут услуги в интернете прямо сейчас. Двигайте ползунки и посмотрите, что происходит, когда вас невозможно найти.</p>
+        <div class="slider-row">
+          <label>Средний чек вашей услуги <output id="o-check">3 000 ₽</output></label>
+          <input type="range" id="r-check" min="500" max="50000" step="500" value="3000">
         </div>
-      </article>
-      <article class="card reveal">
-        <div class="thumb"><img src="img/pit-stop.jpg" alt="Демо-сайт шиномонтажа «Пит-Стоп»" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>Пит-Стоп · шиномонтаж</h3>
-          <p>Сайт шиномонтажа «без очередей»: услуги и цены, статус «открыто», онлайн-запись и акцент на скорости.</p>
-          <div class="meta"><span class="chip">Авто</span><span class="chip">Екатеринбург</span></div>
+        <div class="slider-row">
+          <label>Клиентов в неделю не находят вас <output id="o-clients">5</output></label>
+          <input type="range" id="r-clients" min="1" max="50" step="1" value="5">
         </div>
-      </article>
-      <article class="card reveal">
-        <div class="thumb"><img src="img/strojdom.jpg" alt="Демо-сайт ремонта квартир «СтройДом»" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>СтройДом · ремонт квартир</h3>
-          <p>Ремонт под ключ с фиксированной сметой: калькулятор стоимости, портфолио, этапы и выезд замерщика.</p>
-          <div class="meta"><span class="chip">Дом и стройка</span><span class="chip">Екатеринбург и область</span></div>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="thumb"><img src="img/termit.jpg" alt="Демо-сайт монтажа септиков «Термит»" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>Термит · монтаж септиков</h3>
-          <p>Пять этапов монтажа, смета в договоре и оплата по этапам. Структура переписана с ниши строителей.</p>
-          <div class="meta"><span class="chip">Дом и стройка</span><span class="chip">Казань</span></div>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="thumb"><img src="img/sip-doma.jpg" alt="Демо-сайт застройщика «СИП-Дом»" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>СИП-Дом · застройщик</h3>
-          <p>Дома из сэндвич-панелей под ключ: проекты, этапы стройки и фиксированная смета.</p>
-          <div class="meta"><span class="chip">Дом и стройка</span></div>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="thumb"><img src="img/tehnomaster.jpg" alt="Демо-сайт мастерской «ТехноМастер»" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>ТехноМастер · ремонт техники</h3>
-          <p>Ремонт бытовой техники и электроинструмента: приём в мастерской, прозрачные цены, гарантия.</p>
-          <div class="meta"><span class="chip">Бытовые услуги</span><span class="chip">Казань</span></div>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="thumb"><img src="img/brov-rita.jpg" alt="Демо-сайт бровиста Риты" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>Бровист Рита · брови и ресницы</h3>
-          <p>Лендинг мастера бьюти-услуг: услуги и цены, портфолио и онлайн-запись в ЖК «Зелёный квартал».</p>
-          <div class="meta"><span class="chip">Красота</span><span class="chip">Санкт-Петербург</span></div>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="thumb"><img src="img/lak-i-tochka.jpg" alt="Демо-сайт студии маникюра «Лак и точка»" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>Лак и точка · студия маникюра</h3>
-          <p>Сайт студии маникюра: работы «как есть», цена названа до записи, онлайн-запись без звонков.</p>
-          <div class="meta"><span class="chip">Красота</span><span class="chip">Казань</span></div>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="thumb"><img src="img/opora.jpg" alt="Демо-сайт психолога «Опора»" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>Опора · психолог</h3>
-          <p>Индивидуальные консультации очно и онлайн: направления работы, форматы и бережная запись.</p>
-          <div class="meta"><span class="chip">Здоровье</span><span class="chip">Казань</span></div>
-        </div>
-      </article>
-      <article class="card reveal">
-        <div class="thumb"><img src="img/flora.jpg" alt="Демо-сайт цветочного магазина «Флора»" loading="lazy"><span class="badge">Демо-проект</span></div>
-        <div class="body">
-          <h3>Флора · цветы с доставкой</h3>
-          <p>Каталог букетов с корзиной и оформлением заказа: доставка по городу за 90 минут.</p>
-          <div class="meta"><span class="chip">E-com</span><span class="chip">Екатеринбург</span></div>
-        </div>
-      </article>
+      </div>
+      <div class="calc-result">
+        <div class="sum" id="calc-sum">65 000 ₽</div>
+        <p>примерно столько выручки в месяц может проходить мимо вашего бизнеса</p>
+        <p class="disc">Это оценка для понимания масштаба, а не обещание результата. Точные цифры зависят от ниши, рекламы и спроса.</p>
+        <a class="btn btn-primary" href="#contact">Обсудить мой проект</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- УСЛУГИ И ЦЕНЫ -->
-<section id="services">
+<!-- ЧТО ДЕЛАЕТ САЙТ -->
+<section id="benefits">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Что сайт делает для бизнеса</h2>
+      <p>Сайт – это не картинка, а инструмент. Вот шесть задач, которые он решает каждый день.</p>
+    </div>
+    <div class="benefits">
+      <div class="benefit reveal"><div class="ico">🔍</div><h3>Вас находят в интернете</h3><p>Клиенты ищут в поиске и картах. Без сайта вы отдаёте заявки тем, у кого он есть.</p></div>
+      <div class="benefit reveal"><div class="ico">🕐</div><h3>Работает 24/7</h3><p>Принимает заявки и отвечает на вопросы даже ночью, в выходные и в отпуске.</p></div>
+      <div class="benefit reveal"><div class="ico">📱</div><h3>Удобен с телефона</h3><p>Большинство клиентов заходят с мобильных. Сайт адаптируется под любой экран.</p></div>
+      <div class="benefit reveal"><div class="ico">🤝</div><h3>Создаёт доверие</h3><p>Услуги, цены, примеры работ и отзывы. Клиент понимает, с кем имеет дело, до звонка.</p></div>
+      <div class="benefit reveal"><div class="ico">🎯</div><h3>Собирает заявки</h3><p>Формы, кнопки мессенджеров, ИИ-бот. Заявка уходит сразу вам, ничего не теряется.</p></div>
+      <div class="benefit reveal"><div class="ico">⚙️</div><h3>Экономит время</h3><p>Отвечает на типовые вопросы и берёт рутину на себя, чтобы вы занимались делом.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- КВИЗ -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="quiz reveal">
+      <div>
+        <h3>Три вопроса – и я подскажу формат</h3>
+        <div class="q-block">
+          <div class="q-title"><span>1.</span>Чем занимаетесь?</div>
+          <div class="pills" data-q="0">
+            <button class="pill" type="button">Услуги</button>
+            <button class="pill" type="button">Товары</button>
+            <button class="pill" type="button">Бьюти и здоровье</button>
+            <button class="pill" type="button">Строительство и ремонт</button>
+          </div>
+        </div>
+        <div class="q-block">
+          <div class="q-title"><span>2.</span>Что сайт должен делать в первую очередь?</div>
+          <div class="pills" data-q="1">
+            <button class="pill" type="button">Продать одну услугу или акцию</button>
+            <button class="pill" type="button">Показать каталог товаров и работ</button>
+            <button class="pill" type="button">Рассказать о компании подробно</button>
+            <button class="pill" type="button">Отвечать на вопросы и принимать заявки</button>
+          </div>
+        </div>
+        <div class="q-block">
+          <div class="q-title"><span>3.</span>Где удобнее общаться?</div>
+          <div class="pills" data-q="2">
+            <button class="pill" type="button">Telegram</button>
+            <button class="pill" type="button">MAX</button>
+            <button class="pill" type="button">Звонок</button>
+          </div>
+        </div>
+      </div>
+      <div class="quiz-panel" id="quiz-panel">
+        <div class="placeholder">Ваш формат появится здесь,<br>как только ответите на все три вопроса</div>
+        <div class="quiz-result" id="quiz-result">
+          <h4 id="qr-title">Лендинг</h4>
+          <p id="qr-text"></p>
+          <button class="btn btn-primary" type="button" id="qr-btn">Обсудить этот формат</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- РАБОТЫ -->
+<section id="works">
+  <div class="wrap">
+    <div class="works-head reveal">
+      <div class="sec-head" style="margin-bottom:0">
+        <h2>Работы</h2>
+        <p>Демо-проекты по разным нишам: от салонов красоты до строительства. Каждый сайт адаптивен и собирает заявки с первого экрана.</p>
+      </div>
+      <div class="view-toggle" role="group" aria-label="Вид превью">
+        <button class="on" type="button" data-view="desktop">Компьютер</button>
+        <button type="button" data-view="phone">Телефон</button>
+      </div>
+    </div>
+    <div class="filters reveal" id="filters">
+      <button class="pill sel" type="button" data-filter="all">Все</button>
+      <button class="pill" type="button" data-filter="avto">Авто</button>
+      <button class="pill" type="button" data-filter="stroika">Дом и стройка</button>
+      <button class="pill" type="button" data-filter="krasota">Красота</button>
+      <button class="pill" type="button" data-filter="uslugi">Бытовые услуги</button>
+      <button class="pill" type="button" data-filter="zdorove">Здоровье</button>
+      <button class="pill" type="button" data-filter="ecom">Товары</button>
+    </div>
+    <div class="grid" id="works-grid">
+
+      <article class="card reveal" data-niche="avto">
+        <div class="thumb" data-full="img/aquadrive.jpg"><img src="img/aquadrive.jpg" alt="Демо-сайт детейлинг-студии AquaDrive" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>AquaDrive · детейлинг-студия</h3>
+          <p>Задача: показать премиальность услуги. Реализовано: тёмный лендинг с интерактивной мойкой на первом экране. Результат: посетитель сам «запускает» мойку и видит блеск.</p>
+          <div class="meta"><span class="chip">Авто</span><span class="chip">Екатеринбург</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/aquadrive.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт для автобизнеса (как AquaDrive)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-niche="avto">
+        <div class="thumb" data-full="img/pit-stop.jpg"><img src="img/pit-stop.jpg" alt="Демо-сайт шиномонтажа «Пит-Стоп»" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>Пит-Стоп · шиномонтаж</h3>
+          <p>Задача: записать клиента без звонков. Реализовано: услуги и цены, статус «открыто», онлайн-запись. Результат: акцент на скорости «без очередей».</p>
+          <div class="meta"><span class="chip">Авто</span><span class="chip">Екатеринбург</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/pit-stop.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт для шиномонтажа (как «Пит-Стоп»)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-niche="stroika">
+        <div class="thumb" data-full="img/strojdom.jpg"><img src="img/strojdom.jpg" alt="Демо-сайт ремонта квартир «СтройДом»" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>СтройДом · ремонт квартир</h3>
+          <p>Задача: снять страх «ремонт = бесконечные доплаты». Реализовано: калькулятор стоимости, портфолио, этапы, выезд замерщика. Результат: смета фиксируется до начала работ.</p>
+          <div class="meta"><span class="chip">Дом и стройка</span><span class="chip">Екатеринбург и область</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/strojdom.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт для ремонта и стройки (как «СтройДом»)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-niche="stroika">
+        <div class="thumb" data-full="img/termit.jpg"><img src="img/termit.jpg" alt="Демо-сайт монтажа септиков «Термит»" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>Термит · монтаж септиков</h3>
+          <p>Задача: объяснить сложную услугу просто. Реализовано: пять этапов монтажа, смета в договоре, оплата по этапам. Результат: структура переписана с соседней ниши за один вечер.</p>
+          <div class="meta"><span class="chip">Дом и стройка</span><span class="chip">Казань</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/termit.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт для загородных услуг (как «Термит»)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-niche="stroika">
+        <div class="thumb" data-full="img/sip-doma.jpg"><img src="img/sip-doma.jpg" alt="Демо-сайт застройщика «СИП-Дом»" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>СИП-Дом · застройщик</h3>
+          <p>Задача: продавать дома из сэндвич-панелей. Реализовано: проекты, этапы стройки, фиксированная смета. Результат: понятный путь от проекта до заявки.</p>
+          <div class="meta"><span class="chip">Дом и стройка</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/sip-doma.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт для загородного строительства (как «СИП-Дом»)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-niche="uslugi">
+        <div class="thumb" data-full="img/tehnomaster.jpg"><img src="img/tehnomaster.jpg" alt="Демо-сайт мастерской «ТехноМастер»" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>ТехноМастер · ремонт техники</h3>
+          <p>Задача: показать прозрачность. Реализовано: приём в мастерской, цены на типовые работы, гарантия. Результат: клиент звонит уже «прогретым».</p>
+          <div class="meta"><span class="chip">Бытовые услуги</span><span class="chip">Казань</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/tehnomaster.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт для мастерской или сервиса (как «ТехноМастер»)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-niche="krasota">
+        <div class="thumb" data-full="img/brov-rita.jpg"><img src="img/brov-rita.jpg" alt="Демо-сайт бровиста Риты" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>Бровист Рита · брови и ресницы</h3>
+          <p>Задача: заполнить запись у мастера. Реализовано: услуги и цены, портфолио, онлайн-запись. Результат: лендинг под конкретный жилой квартал.</p>
+          <div class="meta"><span class="chip">Красота</span><span class="chip">Санкт-Петербург</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/brov-rita.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт для мастера бьюти-услуг (как «Бровист Рита»)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-niche="krasota">
+        <div class="thumb" data-full="img/lak-i-tochka.jpg"><img src="img/lak-i-tochka.jpg" alt="Демо-сайт студии маникюра «Лак и точка»" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>Лак и точка · студия маникюра</h3>
+          <p>Задача: записывать без телефонных звонков. Реализовано: работы «как есть», цена до записи, онлайн-запись. Результат: меньше рутины администратору.</p>
+          <div class="meta"><span class="chip">Красота</span><span class="chip">Казань</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/lak-i-tochka.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт для салона красоты (как «Лак и точка»)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-niche="zdorove">
+        <div class="thumb" data-full="img/opora.jpg"><img src="img/opora.jpg" alt="Демо-сайт психолога «Опора»" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>Опора · психолог</h3>
+          <p>Задача: сделать первый шаг клиента лёгким. Реализовано: направления работы, форматы очно и онлайн, бережная запись. Результат: доверие с первого экрана.</p>
+          <div class="meta"><span class="chip">Здоровье</span><span class="chip">Казань</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/opora.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт для специалиста (как «Опора»)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="card reveal" data-niche="ecom">
+        <div class="thumb" data-full="img/flora.jpg"><img src="img/flora.jpg" alt="Демо-сайт цветочного магазина «Флора»" loading="lazy"><span class="badge">Демо-проект</span></div>
+        <div class="body">
+          <h3>Флора · цветы с доставкой</h3>
+          <p>Задача: продавать букеты онлайн. Реализовано: каталог с корзиной и оформлением заказа. Результат: доставка по городу за 90 минут как главный оффер.</p>
+          <div class="meta"><span class="chip">Товары</span><span class="chip">Екатеринбург</span></div>
+          <div class="card-actions">
+            <button class="mini-btn" type="button" data-open="img/flora.jpg">Открыть сайт</button>
+            <button class="mini-btn solid" type="button" data-want="Хочу сайт-витрину с каталогом (как «Флора»)">Хочу похожий</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ТАРИФЫ -->
+<section id="pricing">
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Услуги и цены</h2>
-      <p>Цены «от»: точная стоимость зависит от объёма и зависимостей проекта. Ориентиры на рынке, финальную смету фиксирую до начала работ.</p>
+      <p>Цены «от»: точная стоимость зависит от объёма проекта. Финальную смету фиксирую до начала работ, без сюрпризов в середине.</p>
     </div>
-    <div class="services">
-      <div class="svc reveal">
-        <div><h3>Лендинг под ключ</h3><p>Одностраничный продающий сайт: оффер, услуги, отзывы, формы заявок. Адаптив под телефон, аналитика.</p></div>
-        <div class="price">от 15 000 ₽<small>срок от 5 дней</small></div>
+    <div class="pricing">
+      <div class="plan reveal">
+        <h3>Лендинг</h3>
+        <p class="p-desc">Одностраничный продающий сайт: оффер, услуги, отзывы, формы заявок.</p>
+        <div class="p-price">от 15 000 ₽<small>срок от 5 дней</small></div>
+        <ul>
+          <li>Адаптив под телефон</li>
+          <li>Формы и кнопки мессенджеров</li>
+          <li>Публикация и базовая аналитика</li>
+        </ul>
+        <button class="mini-btn solid" type="button" data-want="Хочу лендинг (от 15 000 ₽)">Обсудить лендинг</button>
       </div>
-      <div class="svc reveal">
-        <div><h3>Сайт-витрина с каталогом</h3><p>Каталог товаров или услуг, карточки, фильтры, корзина или заявка. Для магазинов и мастеров.</p></div>
-        <div class="price">от 25 000 ₽<small>срок от 10 дней</small></div>
+      <div class="plan hot reveal">
+        <span class="tag">Советую для начала</span>
+        <h3>Сайт-витрина</h3>
+        <p class="p-desc">Каталог товаров или услуг с карточками и заявкой. Для магазинов и мастеров.</p>
+        <div class="p-price">от 25 000 ₽<small>срок от 10 дней</small></div>
+        <ul>
+          <li>Каталог и фильтры</li>
+          <li>Карточки товаров или услуг</li>
+          <li>Заявки в мессенджер или таблицу</li>
+        </ul>
+        <button class="mini-btn solid" type="button" data-want="Хочу сайт-витрину (от 25 000 ₽)">Обсудить витрину</button>
       </div>
-      <div class="svc reveal">
-        <div><h3>Многостраничный сайт</h3><p>Сайт компании: несколько страниц, блог, SEO-структура, интеграции с CRM и мессенджерами.</p></div>
-        <div class="price">от 30 000 ₽<small>срок от 14 дней</small></div>
+      <div class="plan reveal">
+        <h3>Многостраничник</h3>
+        <p class="p-desc">Сайт компании: несколько страниц, SEO-структура, интеграции.</p>
+        <div class="p-price">от 30 000 ₽<small>срок от 14 дней</small></div>
+        <ul>
+          <li>Несколько страниц и навигация</li>
+          <li>Базовая SEO-разметка</li>
+          <li>Интеграции с CRM и сервисами</li>
+        </ul>
+        <button class="mini-btn solid" type="button" data-want="Хочу многостраничный сайт (от 30 000 ₽)">Обсудить проект</button>
       </div>
-      <div class="svc reveal">
-        <div><h3>ИИ-ассистент или бот</h3><p>Нейросотрудник в Telegram или на сайте: консультирует, отвечает на вопросы, собирает заявки 24/7.</p></div>
-        <div class="price">от 30 000 ₽<small>срок от 10 дней</small></div>
-      </div>
-      <div class="svc reveal">
-        <div><h3>Автоматизация и интеграции</h3><p>Заявки из форм сразу в Google Таблицу, Telegram, n8n или CRM. Рассылки и отчёты без ручной работы.</p></div>
-        <div class="price">от 10 000 ₽<small>срок от 3 дней</small></div>
-      </div>
-      <div class="svc reveal">
-        <div><h3>Доработка существующего сайта</h3><p>Тексты, скорость, мобильная версия, новые блоки и формы. Помогу привести сайт в порядок.</p></div>
-        <div class="price">от 5 000 ₽<small>срок от 2 дней</small></div>
+      <div class="plan reveal">
+        <h3>ИИ-бот</h3>
+        <p class="p-desc">Нейросотрудник в мессенджере: консультирует и собирает заявки 24/7.</p>
+        <div class="p-price">от 30 000 ₽<small>срок от 10 дней</small></div>
+        <ul>
+          <li>Ответы на вопросы клиентов</li>
+          <li>Сбор заявок и контактов</li>
+          <li>Работа 24/7 без выходных</li>
+        </ul>
+        <button class="mini-btn solid" type="button" data-want="Хочу ИИ-бота (от 30 000 ₽)">Обсудить бота</button>
       </div>
     </div>
   </div>
@@ -340,7 +794,7 @@
 <section id="process">
   <div class="wrap">
     <div class="sec-head reveal">
-      <h2>Как я работаю</h2>
+      <h2>Как мы работаем</h2>
       <p>Прозрачный процесс: вы видите результат на каждом шаге и всегда знаете, что происходит.</p>
     </div>
     <div class="steps">
@@ -352,23 +806,86 @@
   </div>
 </section>
 
-<!-- ФИНАЛ: КОНТАКТЫ -->
+<!-- ОБО МНЕ -->
+<section id="about">
+  <div class="wrap">
+    <div class="about reveal">
+      <div class="about-photo">✦</div>
+      <div>
+        <h2>Меня зовут Алевтина</h2>
+        <p>Я налоговый консультант и создаю цифровые решения для бизнеса с помощью ИИ: продающие лендинги, сайты-витрины, ИИ-ассистентов и автоматизацию рутинных задач.</p>
+        <p>Мой подход: смотреть на проект глазами вашего клиента. Сайт должен быть понятным, быстрым и без лишнего – и обязательно приводить заявки.</p>
+        <p>Работаю онлайн по всей России: от брифа до публикации всё происходит в переписке, без встреч и бумажной волокиты.</p>
+        <div class="facts">
+          <span>Налоговый консультант</span>
+          <span>Сайты и веб-приложения</span>
+          <span>ИИ-ассистенты и боты</span>
+          <span>Автоматизация процессов</span>
+          <span>Онлайн по всей России</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center">
+      <h2>Частые вопросы</h2>
+      <p style="margin-left:auto;margin-right:auto">Собрала то, о чём спрашивают чаще всего. Если вашего вопроса нет – напишите, отвечу лично.</p>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item">
+        <button class="faq-q" type="button">Сколько стоит сайт и от чего зависит цена?</button>
+        <div class="faq-a"><p>На странице указаны цены «от»: лендинг от 15 000 ₽, витрина от 25 000 ₽, многостраничник от 30 000 ₽, ИИ-бот от 30 000 ₽. Точную смету я фиксирую до начала работы – после короткого брифа, когда понятен объём.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">Сколько занимает создание сайта?</button>
+        <div class="faq-a"><p>Лендинг – от 5 дней, сайт-витрина – от 10 дней, многостраничник – от 14 дней, ИИ-бот – от 10 дней. Сроки зависят от объёма и скорости ваших ответов на вопросы по проекту.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">Мы в разных городах, это не мешает?</button>
+        <div class="faq-a"><p>Нисколько. Я работаю онлайн по всей России: созвон или переписка на выбор, все материалы и демо передаю в мессенджере. Географии нет.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">Демо на сайте – это ваши работы?</button>
+        <div class="faq-a"><p>Это учебные демо-проекты, которые я собрала на курсе «Вайб-сайты». Они показывают, как я решаю типовые задачи разных ниш. Ваш сайт будет собран под вашу задачу, а не скопирован.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">Что нужно от меня для старта?</button>
+        <div class="faq-a"><p>Описание бизнеса, услуги и цены, если есть – фото работ и логотип. Из этого я соберу структуру и тексты. Всё остальное – моя задача.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button">Смогу ли я потом сама вносить правки?</button>
+        <div class="faq-a"><p>Да. Перед сдачей я показываю, как управлять содержимым, и остаюсь на связи для доработок. При необходимости подключаю простые инструменты редактирования.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КОНТАКТЫ -->
 <section id="contact">
   <div class="wrap">
     <div class="final reveal">
       <h2>Хотите такой сайт?</h2>
-      <p>Нажмите на кнопку мессенджера, сообщение для отправки уже набрано рядом. Скопируйте его одним кликом и отправьте мне.</p>
+      <p>Оставьте заявку в форме ниже или нажмите кнопку – сообщение для отправки уже набрано. Скопируйте его одним кликом и отправьте мне в удобный мессенджер.</p>
+      <form class="contact-form" id="contact-form">
+        <input type="text" name="name" placeholder="Ваше имя" required>
+        <input type="text" name="contact" placeholder="Телефон, Telegram или MAX" required>
+        <textarea name="msg" rows="3" placeholder="Пара слов о задаче (необязательно)"></textarea>
+        <button class="btn btn-primary" type="submit">Отправить заявку</button>
+        <p class="form-note">Кнопка откроет мессенджер с готовым текстом – заявка уйдёт напрямую мне.</p>
+        <p class="form-ok" id="form-ok">Готово! Осталось нажать «Отправить» в открывшемся мессенджере.</p>
+      </form>
       <div class="msg">
-        <p id="msg-text">Здравствуйте! Хочу заказать сайт</p>
+        <p id="msg-text">Здравствуйте! Хочу заказать сайт, расскажите, пожалуйста, подробнее</p>
         <button class="copy-btn" id="copy-btn" type="button">Скопировать</button>
       </div>
       <div class="final-actions">
-        <!-- Прямая ссылка на бота; текст для отправки находится в пузыре выше -->
-        <a class="btn btn-primary" href="https://t.me/se15011992_bot" target="_blank" rel="noopener">Написать в Telegram</a>
-        <!-- У MAX нет ссылки с готовым текстом: кнопка копирует сообщение и открывает MAX -->
-        <a class="btn btn-ghost" href="https://max.ru" target="_blank" rel="noopener" data-copy-open>Написать в MAX</a>
+        <button class="btn btn-primary" type="button" id="open-messenger">Выбрать мессенджер</button>
       </div>
-      <p class="hint">В Telegram откроется чат с ботом: нажмите «Начать» и вставьте сообщение из пузыря выше. В MAX сообщение скопируется в буфер обмена автоматически.</p>
+      <p class="hint">В Telegram откроется чат с ботом: нажмите «Начать» и отправьте сообщение. В MAX сообщение скопируется автоматически.</p>
     </div>
   </div>
 </section>
@@ -380,35 +897,212 @@
   </div>
 </footer>
 
-<script>
-  const msgText = document.getElementById("msg-text").textContent.trim();
+<!-- Лайтбокс превью -->
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Превью сайта">
+  <button class="close" type="button" aria-label="Закрыть">✕</button>
+  <img src="" alt="Превью демо-сайта">
+</div>
 
-  // Кнопка «Скопировать»
+<!-- Модалка выбора мессенджера -->
+<div class="modal" id="messenger-modal" role="dialog" aria-label="Выбор мессенджера">
+  <div class="modal-box">
+    <h3>Где вам удобнее?</h3>
+    <p>Выберите мессенджер – сообщение уже набрано.</p>
+    <div class="modal-btns">
+      <a class="btn btn-primary" href="https://t.me/se15011992_bot" target="_blank" rel="noopener">✈️ Написать в Telegram</a>
+      <a class="btn btn-ghost" href="https://max.ru" target="_blank" rel="noopener" data-copy-open>💬 Написать в MAX</a>
+    </div>
+    <button class="modal-close" type="button">Закрыть</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  const fmt = n => n.toLocaleString("ru-RU");
+  const msgEl = document.getElementById("msg-text");
+  const msgText = () => msgEl.textContent.trim();
+
+  /* ---------- Карусель в телефонах ---------- */
+  const shots = [
+    "img/flora.jpg", "img/lak-i-tochka.jpg", "img/aquadrive.jpg",
+    "img/strojdom.jpg", "img/brov-rita.jpg", "img/tehnomaster.jpg",
+    "img/opora.jpg", "img/termit.jpg", "img/pit-stop.jpg", "img/sip-doma.jpg"
+  ];
+  const screens = document.querySelectorAll("[data-phone]");
+  const slots = [[], [], []];
+  screens.forEach((s, i) => {
+    const idxs = [i, i + 3, i + 6].map(n => n % shots.length);
+    idxs.forEach(n => {
+      const im = new Image();
+      im.src = shots[n]; im.alt = ""; im.loading = "lazy";
+      if (n === idxs[0]) im.classList.add("active");
+      s.appendChild(im);
+      slots[i].push(im);
+    });
+  });
+  let cur = 0;
+  setInterval(() => {
+    cur = (cur + 1) % 3;
+    slots.forEach((arr, i) => arr.forEach((im, k) => im.classList.toggle("active", k === cur)));
+  }, 2600);
+
+  /* ---------- Тосты «Новая заявка» ---------- */
+  const toasts = [document.getElementById("toast1"), document.getElementById("toast2")].filter(Boolean);
+  let ti = 0;
+  const cycleToast = () => {
+    const t = toasts[ti % toasts.length];
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 3400);
+    ti++;
+  };
+  setTimeout(cycleToast, 1800);
+  setInterval(cycleToast, 7000);
+
+  /* ---------- Калькулятор ---------- */
+  const rCheck = document.getElementById("r-check");
+  const rClients = document.getElementById("r-clients");
+  const oCheck = document.getElementById("o-check");
+  const oClients = document.getElementById("o-clients");
+  const sumEl = document.getElementById("calc-sum");
+  const paint = r => { const p = (r.value - r.min) / (r.max - r.min) * 100; r.style.setProperty("--fill", p + "%"); };
+  const calc = () => {
+    const check = +rCheck.value, clients = +rClients.value;
+    oCheck.textContent = fmt(check) + " ₽";
+    oClients.textContent = clients;
+    const total = Math.round(check * clients * 4.33 / 1000) * 1000;
+    sumEl.textContent = fmt(total) + " ₽";
+    sumEl.style.transform = "scale(1.06)";
+    setTimeout(() => sumEl.style.transform = "", 150);
+    paint(rCheck); paint(rClients);
+  };
+  [rCheck, rClients].forEach(r => r.addEventListener("input", calc));
+  calc();
+
+  /* ---------- Квиз ---------- */
+  const answers = [null, null, null];
+  const panel = document.getElementById("quiz-panel");
+  document.querySelectorAll(".pills").forEach(group => {
+    const qi = +group.dataset.q;
+    group.querySelectorAll(".pill").forEach(p => p.addEventListener("click", () => {
+      group.querySelectorAll(".pill").forEach(x => x.classList.remove("sel"));
+      p.classList.add("sel");
+      answers[qi] = p.textContent.trim();
+      if (answers.every(Boolean)) showQuizResult();
+    }));
+  });
+  function showQuizResult() {
+    const goal = answers[1];
+    let title, text;
+    if (goal.includes("каталог")) { title = "Сайт-витрина · от 25 000 ₽"; text = "Каталог товаров или услуг с карточками и заявкой – подходит для «" + answers[0].toLowerCase() + "». Свяжемся там, где вам удобно: " + answers[2].toLowerCase() + "."; }
+    else if (goal.includes("компании")) { title = "Многостраничный сайт · от 30 000 ₽"; text = "Несколько страниц, подробная информация и интеграции – подходит для «" + answers[0].toLowerCase() + "». Общаемся через: " + answers[2].toLowerCase() + "."; }
+    else if (goal.includes("вопросы")) { title = "ИИ-бот · от 30 000 ₽"; text = "Нейросотрудник ответит на вопросы и соберёт заявки 24/7 – для «" + answers[0].toLowerCase() + "». Пишите мне в " + answers[2].toLowerCase() + "."; }
+    else { title = "Лендинг · от 15 000 ₽"; text = "Одна страница, один оффер, заявка с первого экрана – для «" + answers[0].toLowerCase() + "». Общаемся через: " + answers[2].toLowerCase() + "."; }
+    document.getElementById("qr-title").textContent = title;
+    document.getElementById("qr-text").textContent = text;
+    panel.classList.add("done");
+    msgEl.textContent = "Здравствуйте! Прошла квиз на вашем сайте. " + title.replace(" · ", ", ") + ". Расскажите подробнее.";
+  }
+  document.getElementById("qr-btn").addEventListener("click", () => {
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+  });
+
+  /* ---------- Работы: фильтры и переключатель вида ---------- */
+  const cards = document.querySelectorAll("#works-grid .card");
+  document.getElementById("filters").addEventListener("click", e => {
+    const b = e.target.closest("[data-filter]");
+    if (!b) return;
+    document.querySelectorAll("#filters .pill").forEach(x => x.classList.remove("sel"));
+    b.classList.add("sel");
+    const f = b.dataset.filter;
+    cards.forEach(c => c.classList.toggle("hide", f !== "all" && c.dataset.niche !== f));
+  });
+  document.querySelectorAll(".view-toggle button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".view-toggle button").forEach(x => x.classList.remove("on"));
+    b.classList.add("on");
+    document.querySelectorAll(".thumb").forEach(t => t.classList.toggle("phone-view", b.dataset.view === "phone"));
+  }));
+
+  /* ---------- Лайтбокс ---------- */
+  const lb = document.getElementById("lightbox");
+  const lbImg = lb.querySelector("img");
+  document.querySelectorAll("[data-open]").forEach(b => b.addEventListener("click", () => {
+    lbImg.src = b.dataset.open;
+    lb.classList.add("open");
+  }));
+  document.querySelectorAll(".thumb").forEach(t => t.addEventListener("click", () => {
+    if (t.dataset.full) { lbImg.src = t.dataset.full; lb.classList.add("open"); }
+  }));
+  lb.querySelector(".close").addEventListener("click", () => lb.classList.remove("open"));
+  lb.addEventListener("click", e => { if (e.target === lb) lb.classList.remove("open"); });
+
+  /* ---------- «Хочу похожий» ---------- */
+  document.querySelectorAll("[data-want]").forEach(b => b.addEventListener("click", () => {
+    msgEl.textContent = "Здравствуйте! " + b.dataset.want + ". Расскажите, пожалуйста, подробнее.";
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+  }));
+
+  /* ---------- Форма → модалка ---------- */
+  document.getElementById("contact-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const fd = new FormData(e.target);
+    const parts = ["Здравствуйте! Хочу заказать сайт."];
+    if (fd.get("name")) parts.push("Меня зовут " + fd.get("name") + ".");
+    if (fd.get("msg")) parts.push("Задача: " + fd.get("msg"));
+    parts.push("Связь: " + fd.get("contact"));
+    msgEl.textContent = parts.join(" ");
+    document.getElementById("form-ok").style.display = "block";
+    openModal();
+  });
+
+  /* ---------- Копирование ---------- */
+  const copy = async () => { try { await navigator.clipboard.writeText(msgText()); return true; } catch { return false; } };
   document.getElementById("copy-btn").addEventListener("click", async e => {
     const btn = e.currentTarget;
-    try {
-      await navigator.clipboard.writeText(msgText);
-      btn.textContent = "Скопировано ✓";
-    } catch {
-      const r = document.createRange();
-      r.selectNodeContents(document.getElementById("msg-text"));
-      const s = getSelection();
-      s.removeAllRanges(); s.addRange(r);
-      btn.textContent = "Выделено, скопируйте";
-    }
+    if (await copy()) btn.textContent = "Скопировано ✓";
     setTimeout(() => { btn.textContent = "Скопировать"; }, 2200);
   });
 
-  // Кнопка MAX: копируем сообщение и открываем мессенджер
-  document.querySelector("[data-copy-open]").addEventListener("click", async () => {
-    try { await navigator.clipboard.writeText(msgText); } catch { /* буфер недоступен, просто открываем MAX */ }
+  /* ---------- Модалка мессенджеров ---------- */
+  const modal = document.getElementById("messenger-modal");
+  const openModal = () => modal.classList.add("open");
+  document.getElementById("open-messenger").addEventListener("click", openModal);
+  modal.querySelector(".modal-close").addEventListener("click", () => modal.classList.remove("open"));
+  modal.addEventListener("click", e => { if (e.target === modal) modal.classList.remove("open"); });
+  modal.querySelector("[data-copy-open]").addEventListener("click", () => { copy(); });
+
+  /* ---------- FAQ ---------- */
+  document.querySelectorAll(".faq-item").forEach(item => {
+    const q = item.querySelector(".faq-q");
+    const a = item.querySelector(".faq-a");
+    q.addEventListener("click", () => {
+      const open = item.classList.contains("open");
+      document.querySelectorAll(".faq-item.open").forEach(o => {
+        o.classList.remove("open");
+        o.querySelector(".faq-a").style.maxHeight = "0";
+      });
+      if (!open) {
+        item.classList.add("open");
+        a.style.maxHeight = a.scrollHeight + "px";
+      }
+    });
   });
 
-  // Появление блоков при скролле
+  /* ---------- Бегущая строка: дублируем для бесшовного цикла ---------- */
+  const mq = document.getElementById("marquee");
+  mq.innerHTML += mq.innerHTML;
+
+  /* ---------- Появление при скролле ---------- */
   const io = new IntersectionObserver(entries => {
     entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("visible"); io.unobserve(en.target); } });
   }, { threshold: .1 });
   document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+  /* ---------- Escape закрывает оверлеи ---------- */
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") { lb.classList.remove("open"); modal.classList.remove("open"); }
+  });
+})();
 </script>
 
 </body>
